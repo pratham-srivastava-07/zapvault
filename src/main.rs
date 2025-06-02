@@ -15,6 +15,7 @@ fn main() {
 
         Commands::Write { tag } => {
             println!("Write a new entry. Tag: {:?}", tag);
+            commands::write::handle_write(tag);
         }
 
         Commands::List => {
@@ -24,6 +25,5 @@ fn main() {
         Commands::Unlock => {
           commands::unlock::handle_unlock();
         }
-
    }
 }
