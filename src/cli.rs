@@ -19,7 +19,5 @@ pub enum Commands {
         #[arg(long, short)]
         tag: Option<String>
     },
-
-    List,
     Unlock,
 }

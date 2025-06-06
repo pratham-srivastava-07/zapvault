@@ -32,14 +32,39 @@ pub fn handle_unlock() {
         eprintln!("Incorrect password. Access denied.");
         return;
     }
+    // checkk for decrypting and showing user what they have stored in it
+    let data_path = path.join("vault.data");
+    if !data_path.exists() {
+        eprintln!("No entries found (vault.data missing).");
+        return;
+    }
+
+    let file = fs::File::open(&data_path).expect("Failed to open vault.data");
+    let entries: Vec<Vault> = serde_json::from_reader(file).expect("Failed to parse vault.data");
+
+    println!("\nDecrypted Vault Entries:");
+    for (i, entry) in entries.iter().enumerate() {
+        let key = derive_key_from_password(&password, &entry.nonce);
+        let key = Key::<Aes256Gcm>::from_slice(&key);
+        let cipher = Aes256Gcm::new(key);
+
+        match cipher.decrypt(Nonce::from_slice(&entry.nonce), entry.ciphertext.as_ref()) {
+            Ok(decrypted) => {
+                println!("{}. {}", i + 1, String::from_utf8_lossy(&decrypted));
+            }
+            Err(_) => {
+                println!("{}. [Failed to decrypt entry]", i + 1);
+            }
+        }
+    }
 
     let key = derive_key_from_password(&password, &vault.nonce);
     let key = Key::<Aes256Gcm>::from_slice(&key);
     let cipher = Aes256Gcm::new(key);
 
     match cipher.decrypt(Nonce::from_slice(&vault.nonce), vault.ciphertext.as_ref()) {
-        Ok(decrypted) => {
-            println!("Vault unlocked! Contents: {}", String::from_utf8_lossy(&decrypted));
+        Ok(_) => {
+            println!("Vault unlocked!");
         }
         Err(_) => {
             eprintln!("Failed to decrypt vault contents. Possibly wrong password.");

@@ -18,10 +18,6 @@ fn main() {
             commands::write::handle_write(tag);
         }
 
-        Commands::List => {
-            println!("Listing entries...");
-        }
-
         Commands::Unlock => {
           commands::unlock::handle_unlock();
         }
