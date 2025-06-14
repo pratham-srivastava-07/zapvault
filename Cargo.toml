@@ -1,7 +1,14 @@
 [package]
-name = "cli"
+name = "zapvault"
 version = "0.1.0"
 edition = "2021"
+author = "Pratham Srivastava <github: github.com/pratham-srivastava-07>"
+description = "A simplified vault journal"
+license = "MIT"
+repository = "https://github.com/pratham-srivastava-07/zapvault"
+categories = ["algorithms"]
+keywords = ["cli", "version-control", "git","developer-utility"]
+readme = "README.md"
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }

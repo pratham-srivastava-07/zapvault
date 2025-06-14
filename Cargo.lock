@@ -180,22 +180,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f46ad14479a25103f283c0f10005961cf086d8dc42205bb44c46ac563475dca6"
 
 [[package]]
-name = "cli"
-version = "0.1.0"
-dependencies = [
- "aes-gcm",
- "argon2",
- "clap",
- "pbkdf2",
- "rand",
- "rand_core",
- "rpassword",
- "serde",
- "serde_json",
- "sha2",
-]
-
-[[package]]
 name = "colorchoice"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -636,6 +620,22 @@ name = "windows_x86_64_msvc"
 version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
+
+[[package]]
+name = "zapvault"
+version = "0.1.0"
+dependencies = [
+ "aes-gcm",
+ "argon2",
+ "clap",
+ "pbkdf2",
+ "rand",
+ "rand_core",
+ "rpassword",
+ "serde",
+ "serde_json",
+ "sha2",
+]
 
 [[package]]
 name = "zerocopy"
