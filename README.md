@@ -34,8 +34,6 @@ A CLI vault that provides:
 
 - `init` - Create a secure journal vault with encrypted metadata & entries
 - `write` - Add entries with optional tags and labels
-- `lock` - Set time-locks on entries (only readable after unlock date)
-- `list` - View encrypted entries without seeing content
 - `unlock` - Access entries when the time-lock expires
 
 ## 🎯 Who Would Use This?
@@ -76,19 +74,13 @@ Plus, in an age where everything lives in the cloud, there's something refreshin
 
 ```bash
 # Initialize your secure vault
-journal init
+zapvault init
 
 # Write your first entry
-journal write "Today I realized..." --tags mood,reflection
-
-# Lock an entry for 1 year
-journal lock --entry-id 123 --until 2025-12-01
-
-# List all entries (encrypted)
-journal list
+zapvault write 
 
 # Unlock available entries
-journal unlock
+zapvault unlock
 ```
 
 ## 🤝 Contributing
